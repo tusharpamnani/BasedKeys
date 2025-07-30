@@ -12,7 +12,7 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <h1 className="text-2xl font-bold text-blue-600">
-                🧠 Typing Challenge
+                🧠 SpeedKeys
               </h1>
               
             </div>
