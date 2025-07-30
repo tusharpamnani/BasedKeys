@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Quiz API Test</h1>
+
+    <div class="test-section">
+        <h3>Test API Connection</h3>
+        <button onclick="testConnection()">Test Connection</button>
+        <div id="connection-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test Debug Endpoint</h3>
+        <button onclick="testDebug()">Test Debug</button>
+        <div id="debug-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test Featured Quizzes</h3>
+        <button onclick="testFeatured()">Test Featured</button>
+        <div id="featured-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test Trending Quizzes</h3>
+        <button onclick="testTrending()">Test Trending</button>
+        <div id="trending-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test Join Quiz</h3>
+        <button onclick="testJoin()">Test Join</button>
+        <div id="join-result"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000/api';
+
+        async function makeRequest(endpoint, options = {}) {
+            try {
+                const response = await fetch(`${API_BASE}${endpoint}`, {
+                    headers: { 'Content-Type': 'application/json', ...options.headers },
+                    ...options
+                });
+                const data = await response.json();
+                return { success: true, data, status: response.status };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        function displayResult(elementId, result) {
+            const element = document.getElementById(elementId);
+            element.className = result.success ? 'success' : 'error';
+            element.innerHTML = `
+                <h4>${result.success ? '✅ Success' : '❌ Error'}</h4>
+                <pre>${JSON.stringify(result, null, 2)}</pre>
+            `;
+        }
+
+        async function testConnection() {
+            const result = await makeRequest('/quizzes?action=test');
+            displayResult('connection-result', result);
+        }
+
+        async function testDebug() {
+            const result = await makeRequest('/quizzes?action=debug');
+            displayResult('debug-result', result);
+        }
+
+        async function testFeatured() {
+            const result = await makeRequest('/quizzes?action=featured');
+            displayResult('featured-result', result);
+        }
+
+        async function testTrending() {
+            const result = await makeRequest('/quizzes?action=trending');
+            displayResult('trending-result', result);
+        }
+
+        async function testJoin() {
+            // First get a quiz to join
+            const listResult = await makeRequest('/quizzes?action=list');
+            if (listResult.success && listResult.data.quizzes.length > 0) {
+                const quiz = listResult.data.quizzes[0];
+                const joinResult = await makeRequest('/quizzes', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: 'join',
+                        quizId: quiz.id,
+                        fid: 9999,
+                        username: 'test_user',
+                        walletAddress: '0x1234567890123456789012345678901234567890'
+                    })
+                });
+                displayResult('join-result', joinResult);
+            } else {
+                displayResult('join-result', { success: false, error: 'No quizzes available to join' });
+            }
+        }
+
+        // Auto-test on page load
+        window.onload = function () {
+            console.log('Quiz API Test Page Loaded');
+            console.log('API Base URL:', API_BASE);
+        };
+    </script>
+</body>
+
+</html>
