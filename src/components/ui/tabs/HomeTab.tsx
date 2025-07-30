@@ -1,6 +1,6 @@
 "use client";
 
-import TriviaGame from "~/components/TriviaGame";
+import TypingChallenge from "~/components/TypingChallenge";
 
 /**
  * HomeTab component displays the main landing content for the mini app.
@@ -16,6 +16,6 @@ import TriviaGame from "~/components/TriviaGame";
  */
 export function HomeTab() {
   return (
-    <TriviaGame />
+    <TypingChallenge />
   );
 } 
