@@ -9,9 +9,9 @@ export async function GET() {
     console.error('Error generating metadata:', error);
     return NextResponse.json({
       "accountAssociation": {
-        "header": "eyJmaWQiOjExMzk4NjksInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHg0YUU5NjYzRDA0MThFNzdFMTUxOEY3RUU4ZDk5ZjMyODlkNWZBNDdkIn0",
-        "payload": "eyJkb21haW4iOiJzcGVlZGtleXMtdGhldGEudmVyY2VsLmFwcCJ9",
-        "signature": "MHhiNWE3ZTk5OTczZWFmZjU3NzM2YjI2YzMwMmE4ZjY0NzBhNTZhNTZlYWExMjkwNGVlZDI5OTFmYzE2ZmE2MDdkNjNmMjg3NWMyYWY0NGNmZGNlMjg4OWU1ZWY0ZTZiNWU2MDFkODcyN2JhMjExZjk4MGEzZTY5MGEwMjAxNDJiZDFj"
+        "header": process.env.FARCASTER_HEADER,
+        "payload": process.env.FARCASTER_PAYLOAD,
+        "signature": process.env.FARCASTER_SIGNATURE
       },
       "frame": {
         "version": "1",
