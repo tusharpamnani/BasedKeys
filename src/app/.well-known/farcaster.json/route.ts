@@ -10,19 +10,19 @@ export async function GET() {
     return NextResponse.json({
       "accountAssociation": {
         "header": "eyJmaWQiOjExMzk4NjksInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHg0YUU5NjYzRDA0MThFNzdFMTUxOEY3RUU4ZDk5ZjMyODlkNWZBNDdkIn0",
-        "payload": "eyJkb21haW4iOiJzcGVlZGtleXMueHl6In0",
-        "signature": "MHhkZmViZmRlYjEzMzZjOWY0MTc4YTljYjcwMWUxOTVjYzVkYjQyNzkxZmFjY2Y4YzMwOWFmYmZkOThjNmFhMTQxNzkyYmZmMjE4OTIxNDhkNWY4MTAzZjQ2ZTFhYjcwNGU2MmZkOGY3ZGJmZDlmY2I3ZTY3MDc2ZDJjY2M4MWRmOTFi"
+        "payload": "eyJkb21haW4iOiJzcGVlZGtleXMtdGhldGEudmVyY2VsLmFwcCJ9",
+        "signature": "MHhiNWE3ZTk5OTczZWFmZjU3NzM2YjI2YzMwMmE4ZjY0NzBhNTZhNTZlYWExMjkwNGVlZDI5OTFmYzE2ZmE2MDdkNjNmMjg3NWMyYWY0NGNmZGNlMjg4OWU1ZWY0ZTZiNWU2MDFkODcyN2JhMjExZjk4MGEzZTY5MGEwMjAxNDJiZDFj"
       },
       "frame": {
         "version": "1",
         "name": "SpeedKeys",
-        "iconUrl": "https://speedkeys.xyz/icon.png",
-        "homeUrl": "https://speedkeys.xyz",
-        "imageUrl": "https://speedkeys.xyz/image.png",
+        "iconUrl": "https://speedkeys-theta.vercel.app/icon.png",
+        "homeUrl": "https://speedkeys-theta.vercel.app",
+        "imageUrl": "https://speedkeys-theta.vercel.app/image.png",
         "buttonTitle": "Launch Mini App",
-        "splashImageUrl": "https://speedkeys.xyz/splash.png",
+        "splashImageUrl": "https://speedkeys-theta.vercel.app/splash.png",
         "splashBackgroundColor": "#eeccff",
-        "webhookUrl": "https://speedkeys.xyz/api/webhook"
+        "webhookUrl": "https://speedkeys-theta.vercel.app/api/webhook"
       }
     });
   }
