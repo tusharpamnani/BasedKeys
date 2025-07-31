@@ -25,13 +25,12 @@ export async function GET() {
       frame: withValidProperties({
         version: "1",
         name: "SpeedKeys",
-        iconUrl: `${URL}/icon.png`,
+        iconUrl: `https://github.com/tusharpamnani/BasedKeys/blob/main/public/icon.png`,
         homeUrl: `${URL}`,
-        imageUrl: `${URL}/image.png`,
-        buttonTitle: "Launch Mini App",
-        splashImageUrl: `${URL}/splash.png`,
+        imageUrl: `https://github.com/tusharpamnani/BasedKeys/blob/main/public/icon.png`,
+        buttonTitle: "Launch SpeedKeys",
+        splashImageUrl: `https://github.com/tusharpamnani/BasedKeys/blob/main/public/splash.png`,
         splashBackgroundColor: "#eeccff",
-        webhookUrl: `${URL}/api/webhook`,
       }),
     });
   }
